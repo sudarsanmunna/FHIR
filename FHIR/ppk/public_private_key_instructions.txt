@@ -1,0 +1,12 @@
+Creating a Public Private Key Pair: OpenSSL
+1. You can create a new private key named privatekey.pem using OpenSSL with the following command:
+
+openssl genrsa -out privatekey.pem 2048
+
+Make sure the key length is at least 2048 bits.
+
+2. Then you can export the public key to a base64 encoded X.509 certificate named publickey509.pem using this command:
+
+openssl req -new -x509 -key privatekey.pem -out publickey509.pem -subj /CN=myapp
+
+Where /CN=myapp is the subject name (for example the app name) the key pair is for. The subject name does not have a functional impact in this case but it is required for creating an X.509 certificate.
